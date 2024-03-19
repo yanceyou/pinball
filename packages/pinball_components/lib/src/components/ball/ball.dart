@@ -46,7 +46,7 @@ class Ball extends BodyComponent with Layered, InitialPosition, ZIndex {
             FlameBlocProvider<BallCubit, BallState>.value(
               value: bloc ?? BallCubit(),
               children: [BallSpriteComponent(assetPath: assetPath)],
-            )
+            ),
           ],
         );
 

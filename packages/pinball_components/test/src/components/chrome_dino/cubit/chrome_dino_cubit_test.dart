@@ -17,7 +17,7 @@ void main() {
             (state) => state.isMouthOpen,
             'isMouthOpen',
             true,
-          )
+          ),
         ],
       );
 
@@ -30,7 +30,7 @@ void main() {
             (state) => state.isMouthOpen,
             'isMouthOpen',
             false,
-          )
+          ),
         ],
       );
 
@@ -50,7 +50,7 @@ void main() {
               (state) => state.ball,
               'ball',
               ball,
-            )
+            ),
         ],
       );
 
@@ -75,7 +75,7 @@ void main() {
               (state) => state.ball,
               'ball',
               null,
-            )
+            ),
         ],
       );
     },

@@ -176,7 +176,7 @@ void main() {
       setUp: (game, tester) async {
         final activatedBumpersState = DashBumpersState(
           bumperSpriteStates: {
-            for (var id in DashBumperId.values) id: DashBumperSpriteState.active
+            for (final id in DashBumperId.values) id: DashBumperSpriteState.active,
           },
         );
         final signpost = Signpost();

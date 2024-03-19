@@ -27,7 +27,7 @@ class _TestGame extends Forge2DGame {
       FlameBlocProvider<GameBloc, GameState>.value(
         value: gameBloc ?? GameBloc(),
         children: [
-          ZCanvasComponent(children: [child])
+          ZCanvasComponent(children: [child]),
         ],
       ),
     );

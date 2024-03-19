@@ -80,7 +80,7 @@ class GameBlocStatusListener extends Component
         [
           PlungerPullingBehavior(strength: 7),
           PlungerAutoPullingBehavior(),
-          PlungerKeyControllingBehavior()
+          PlungerKeyControllingBehavior(),
         ],
       );
 

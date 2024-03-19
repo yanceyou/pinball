@@ -51,7 +51,6 @@ class _MockContactImpulse extends Mock implements ContactImpulse {}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  final flameTester = FlameTester(Forge2DGame.new);
 
   group('ContactBehavior', () {
     late Object other;
@@ -68,7 +67,7 @@ void main() {
       fixtureDef = FixtureDef(CircleShape());
     });
 
-    flameTester.test(
+    testWithFlameGame(
       "should add a new ContactCallbacks to the parent's body userData "
       'when not applied to fixtures',
       (game) async {
@@ -81,7 +80,7 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithFlameGame(
       'should add a new ContactCallbacks to the targeted fixture ',
       (game) async {
         final parent = _TestBodyComponent();
@@ -103,7 +102,7 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithFlameGame(
       'should add a new ContactCallbacks to the targeted fixtures ',
       (game) async {
         final parent = _TestBodyComponent();
@@ -127,7 +126,7 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithFlameGame(
       "should respect the previous ContactCallbacks in the parent's userData "
       'when not applied to fixtures',
       (game) async {
@@ -163,7 +162,7 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithFlameGame(
       'can group multiple ContactBehaviors and keep listening',
       (game) async {
         final parent = _TestBodyComponent();
@@ -202,7 +201,7 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithFlameGame(
       'can group multiple ContactBehaviors and keep listening '
       'when applied to a fixture',
       (game) async {

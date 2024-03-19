@@ -24,7 +24,6 @@ class _MockContact extends Mock implements Contact {}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  final flameTester = FlameTester(Forge2DGame.new);
 
   group('LayerContactBehavior', () {
     test('can be instantiated', () {
@@ -34,7 +33,7 @@ void main() {
       );
     });
 
-    flameTester.test('can be loaded', (game) async {
+    testWithFlameGame('can be loaded', (game) async {
       final behavior = LayerContactBehavior(layer: Layer.all);
       final parent = _TestBodyComponent();
       await game.ensureAdd(parent);
@@ -42,7 +41,7 @@ void main() {
       expect(parent.children, contains(behavior));
     });
 
-    flameTester.test('beginContact changes layer', (game) async {
+    testWithFlameGame('beginContact changes layer', (game) async {
       const oldLayer = Layer.all;
       const newLayer = Layer.board;
       final behavior = LayerContactBehavior(layer: newLayer);
@@ -57,7 +56,7 @@ void main() {
       expect(component.layer, newLayer);
     });
 
-    flameTester.test('endContact changes layer', (game) async {
+    testWithFlameGame('endContact changes layer', (game) async {
       const oldLayer = Layer.all;
       const newLayer = Layer.board;
       final behavior = LayerContactBehavior(

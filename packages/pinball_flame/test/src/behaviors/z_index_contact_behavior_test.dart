@@ -24,7 +24,6 @@ class _MockContact extends Mock implements Contact {}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  final flameTester = FlameTester(Forge2DGame.new);
 
   group('ZIndexContactBehavior', () {
     test('can be instantiated', () {
@@ -34,7 +33,7 @@ void main() {
       );
     });
 
-    flameTester.test('can be loaded', (game) async {
+    testWithFlameGame('can be loaded', (game) async {
       final behavior = ZIndexContactBehavior(zIndex: 0);
       final parent = _TestBodyComponent();
       await game.ensureAdd(parent);
@@ -42,7 +41,7 @@ void main() {
       expect(parent.children, contains(behavior));
     });
 
-    flameTester.test('beginContact changes zIndex', (game) async {
+    testWithFlameGame('beginContact changes zIndex', (game) async {
       const oldIndex = 0;
       const newIndex = 1;
       final behavior = ZIndexContactBehavior(zIndex: newIndex);
@@ -57,7 +56,7 @@ void main() {
       expect(component.zIndex, newIndex);
     });
 
-    flameTester.test('endContact changes zIndex', (game) async {
+    testWithFlameGame('endContact changes zIndex', (game) async {
       const oldIndex = 0;
       const newIndex = 1;
       final behavior = ZIndexContactBehavior(zIndex: newIndex, onBegin: false);

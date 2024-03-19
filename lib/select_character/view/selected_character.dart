@@ -60,7 +60,7 @@ class _SelectedCharacterState extends State<SelectedCharacter>
       children: [
         Text(
           widget.currentCharacter.name,
-          style: Theme.of(context).textTheme.headline2,
+          style: Theme.of(context).textTheme.displayMedium,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
         ),

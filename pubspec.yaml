@@ -8,28 +8,23 @@ environment:
   flutter: 2.10.5
 
 dependencies:
-  authentication_repository:
-    path: packages/authentication_repository
-  bloc: ^8.0.2
-  cloud_firestore: ^3.1.10
+  bloc: ^8.1.3
+  cloud_firestore: ^4.15.9
   equatable: ^2.0.3
-  firebase_auth: ^3.3.16
-  firebase_core: ^1.15.0
-  flame: ^1.1.1
-  flame_bloc: ^1.4.0
-  flame_forge2d:
-    git:
-      url: https://github.com/flame-engine/flame
-      path: packages/flame_forge2d/
-      ref: a50d4a1e7d9eaf66726ed1bb9894c9d495547d8f
+  url_launcher: ^6.1.0
+  firebase_auth: ^4.6.0
+  firebase_core: ^2.27.1
+  flutter_bloc: ^8.0.1
+  flame: ^1.16.0
+  flame_bloc: ^1.11.0
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
   geometry:
     path: packages/geometry
-  intl: ^0.17.0
+  authentication_repository:
+    path: packages/authentication_repository
   leaderboard_repository:
     path: packages/leaderboard_repository
   pinball_audio:
@@ -46,15 +41,15 @@ dependencies:
     path: packages/platform_helper
   share_repository:
     path: packages/share_repository
-  url_launcher: ^6.1.0
+  intl: ^0.18.1
 
 dev_dependencies:
   bloc_test: ^9.0.2
   flame_test: ^1.3.0
   flutter_test:
     sdk: flutter
-  mocktail: ^0.3.0
-  very_good_analysis: ^2.4.0
+  mocktail: ^1.0.3
+  very_good_analysis: ^5.1.0
 
 flutter:
   uses-material-design: true

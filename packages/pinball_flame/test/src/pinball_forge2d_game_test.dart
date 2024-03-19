@@ -18,7 +18,7 @@ void main() {
       );
     });
 
-    flameTester.test(
+    testWithFlameGame(
       'screenToFlameWorld throws UnimplementedError',
       (game) async {
         expect(
@@ -28,7 +28,7 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithFlameGame(
       'screenToWorld throws UnimplementedError',
       (game) async {
         expect(
@@ -38,7 +38,7 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithFlameGame(
       'worldToScreen throws UnimplementedError',
       (game) async {
         expect(

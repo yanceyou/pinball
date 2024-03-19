@@ -2,7 +2,6 @@
 
 import 'package:flame/game.dart';
 import 'package:flame_test/flame_test.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -37,14 +36,14 @@ abstract class _KeyCall {
 
 class _MockKeyCall extends Mock implements _KeyCall {}
 
-class _MockRawKeyUpEvent extends Mock implements RawKeyUpEvent {
+class _MockRawKeyUpEvent extends Mock implements KeyUpEvent {
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return super.toString();
   }
 }
 
-RawKeyUpEvent _mockKeyUp(LogicalKeyboardKey key) {
+KeyUpEvent _mockKeyUp(LogicalKeyboardKey key) {
   final event = _MockRawKeyUpEvent();
   when(() => event.logicalKey).thenReturn(key);
   return event;
@@ -101,10 +100,8 @@ void main() {
     );
   });
   group('VirtualKeyEvents', () {
-    final flameTester = FlameTester(_TestGame.new);
-
     group('onVirtualKeyUp', () {
-      flameTester.test('triggers the event', (game) async {
+      testWithFlameGame('triggers the event', (game) async {
         await game.ready();
         game.triggerVirtualKeyUp(LogicalKeyboardKey.enter);
         expect(game.pressed, isTrue);

@@ -20,7 +20,7 @@ class RoundCountDisplay extends StatelessWidget {
       children: [
         Text(
           l10n.rounds,
-          style: Theme.of(context).textTheme.subtitle1,
+          style: Theme.of(context).textTheme.titleMedium,
         ),
         const SizedBox(width: 8),
         Row(

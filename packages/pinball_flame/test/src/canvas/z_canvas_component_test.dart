@@ -29,7 +29,7 @@ void main() {
       );
     });
 
-    flameTester.test('loads correctly', (game) async {
+    testWithFlameGame('loads correctly', (game) async {
       final component = ZCanvasComponent();
       await game.ensureAdd(component);
       expect(game.contains(component), isTrue);
@@ -62,7 +62,7 @@ void main() {
         final canvas = ZCanvasComponent(
           children: [
             _TestCircleComponent(Colors.blue)..zIndex = 0,
-            _TestCircleComponent(Colors.red)..zIndex = 1
+            _TestCircleComponent(Colors.red)..zIndex = 1,
           ],
         );
         await game.ensureAdd(canvas);

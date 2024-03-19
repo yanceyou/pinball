@@ -24,13 +24,13 @@ void main() {
         );
       });
 
-      flameTester.test('can be loaded', (game) async {
+      testWithFlameGame('can be loaded', (game) async {
         final component = FlameProvider<bool>.value(true);
         await game.ensureAdd(component);
         expect(game.children, contains(component));
       });
 
-      flameTester.test('adds children', (game) async {
+      testWithFlameGame('adds children', (game) async {
         final component = Component();
         final provider = FlameProvider<bool>.value(
           true,
@@ -54,7 +54,7 @@ void main() {
       );
     });
 
-    flameTester.test('adds multiple providers', (game) async {
+    testWithFlameGame('adds multiple providers', (game) async {
       final provider1 = FlameProvider<bool>.value(true);
       final provider2 = FlameProvider<bool>.value(true);
       final providers = MultiFlameProvider(
@@ -65,7 +65,7 @@ void main() {
       expect(provider1.children, contains(provider2));
     });
 
-    flameTester.test('adds children under provider', (game) async {
+    testWithFlameGame('adds children under provider', (game) async {
       final component = Component();
       final provider = FlameProvider<bool>.value(true);
       final providers = MultiFlameProvider(
@@ -80,7 +80,7 @@ void main() {
   group(
     'ReadFlameProvider',
     () {
-      flameTester.test('loads provider', (game) async {
+      testWithFlameGame('loads provider', (game) async {
         final component = Component();
         final provider = FlameProvider<bool>.value(
           true,
@@ -90,7 +90,7 @@ void main() {
         expect(component.readProvider<bool>(), isTrue);
       });
 
-      flameTester.test(
+      testWithFlameGame(
         'throws assertionError when no provider is found',
         (game) async {
           final component = Component();
@@ -108,7 +108,7 @@ void main() {
   group(
     'ReadFlameBlocProvider',
     () {
-      flameTester.test('loads provider', (game) async {
+      testWithFlameGame('loads provider', (game) async {
         final component = Component();
         final bloc = _FakeCubit();
         final provider = FlameBlocProvider<_FakeCubit, Object>.value(
@@ -119,7 +119,7 @@ void main() {
         expect(component.readBloc<_FakeCubit, Object>(), equals(bloc));
       });
 
-      flameTester.test(
+      testWithFlameGame(
         'throws assertionError when no provider is found',
         (game) async {
           final component = Component();

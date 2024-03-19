@@ -5,7 +5,6 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:flame/components.dart';
-import 'package:flame/game.dart';
 import 'package:flame_test/flame_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pinball_flame/src/canvas/canvas_component.dart';
@@ -16,8 +15,6 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('CanvasComponent', () {
-    final flameTester = FlameTester(FlameGame.new);
-
     test('can be instantiated', () {
       expect(
         CanvasComponent(),
@@ -25,13 +22,13 @@ void main() {
       );
     });
 
-    flameTester.test('loads correctly', (game) async {
+    testWithFlameGame('loads correctly', (game) async {
       final component = CanvasComponent();
       await game.ensureAdd(component);
       expect(game.contains(component), isTrue);
     });
 
-    flameTester.test(
+    testWithFlameGame(
       'adds children',
       (game) async {
         final component = Component();

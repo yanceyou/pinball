@@ -23,8 +23,6 @@ class _TestBodyComponent extends BodyComponent {
 }
 
 void main() {
-  final flameTester = FlameTester(Forge2DGame.new);
-
   group('Layered', () {
     void _expectLayerOnFixtures({
       required List<Fixture> fixtures,
@@ -40,7 +38,7 @@ void main() {
       }
     }
 
-    flameTester.test('TestBodyComponent has fixtures', (game) async {
+    testWithFlameGame('TestBodyComponent has fixtures', (game) async {
       final component = _TestBodyComponent();
       await game.ensureAdd(component);
     });
@@ -51,7 +49,7 @@ void main() {
       expect(component.layer, Layer.spaceshipEntranceRamp);
     });
 
-    flameTester.test(
+    testWithFlameGame(
       'layers correctly before being loaded',
       (game) async {
         const expectedLayer = Layer.spaceshipEntranceRamp;
@@ -65,7 +63,7 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithFlameGame(
       'layers correctly before being loaded '
       'when multiple different sets',
       (game) async {
@@ -85,7 +83,7 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithFlameGame(
       'layers correctly after being loaded',
       (game) async {
         const expectedLayer = Layer.spaceshipEntranceRamp;
@@ -99,7 +97,7 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithFlameGame(
       'layers correctly after being loaded '
       'when multiple different sets',
       (game) async {
@@ -118,7 +116,7 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithFlameGame(
       'defaults to Layer.all '
       'when no layer is given',
       (game) async {
@@ -128,7 +126,7 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithFlameGame(
       'nested Layered children will keep their layer',
       (game) async {
         const parentLayer = Layer.spaceshipEntranceRamp;
@@ -150,7 +148,7 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithFlameGame(
       'nested children will keep their layer',
       (game) async {
         const parentLayer = Layer.spaceshipEntranceRamp;

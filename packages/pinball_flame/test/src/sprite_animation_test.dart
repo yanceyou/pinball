@@ -23,8 +23,8 @@ void main() {
 
       when(() => controller.animation).thenAnswer((_) => animation);
 
-      when(() => animation.totalDuration()).thenAnswer((_) => 1);
-      when(() => animation.getSprite()).thenAnswer((_) => sprite);
+      when(() => animation.createTicker().totalDuration()).thenAnswer((_) => 1);
+      when(() => animation.createTicker().getSprite()).thenAnswer((_) => sprite);
       when(() => sprite.srcSize).thenAnswer((_) => Vector2(1, 1));
       when(() => sprite.srcSize).thenAnswer((_) => Vector2(1, 1));
     });
@@ -48,7 +48,7 @@ void main() {
         animation: animation,
       ).notifyListeners();
 
-      verify(() => animation.update(any())).called(1);
+      verify(() => animation.createTicker().update(any())).called(1);
     });
 
     testWidgets('SpritePainter shouldRepaint returns true when Sprite changed',

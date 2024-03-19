@@ -1,7 +1,6 @@
 // ignore_for_file: cascade_invocations
 
 import 'package:flame/components.dart';
-import 'package:flame/game.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flame_test/flame_test.dart';
@@ -283,7 +282,7 @@ void main() {
                 create: PlungerCubit.new,
                 children: [
                   PlungerPullingBehavior(strength: 0),
-                  PlungerAutoPullingBehavior()
+                  PlungerAutoPullingBehavior(),
                 ],
               ),
             );

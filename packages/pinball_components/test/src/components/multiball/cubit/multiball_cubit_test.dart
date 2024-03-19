@@ -16,7 +16,7 @@ void main() {
               (state) => state.animationState,
               'animationState',
               MultiballAnimationState.blinking,
-            )
+            ),
         ],
       );
 
@@ -30,7 +30,7 @@ void main() {
               (state) => state.animationState,
               'animationState',
               MultiballAnimationState.idle,
-            )
+            ),
         ],
       );
 
@@ -59,7 +59,7 @@ void main() {
               (state) => state.lightState,
               'lightState',
               MultiballLightState.lit,
-            )
+            ),
         ],
       );
     },

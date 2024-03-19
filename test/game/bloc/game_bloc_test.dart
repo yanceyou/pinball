@@ -87,7 +87,7 @@ void main() {
         expect: () => [
           isA<GameState>()
             ..having((state) => state.totalScore, 'totalScore', 25)
-            ..having((state) => state.roundScore, 'roundScore', 0)
+            ..having((state) => state.roundScore, 'roundScore', 0),
         ],
       );
 
@@ -109,7 +109,7 @@ void main() {
               (state) => state.totalScore,
               'totalScore',
               9999999999,
-            )
+            ),
         ],
       );
 
@@ -128,7 +128,7 @@ void main() {
           bloc.add(const RoundLost());
         },
         expect: () => [
-          isA<GameState>()..having((state) => state.multiplier, 'multiplier', 1)
+          isA<GameState>()..having((state) => state.multiplier, 'multiplier', 1),
         ],
       );
     });
@@ -203,7 +203,7 @@ void main() {
         ),
         act: (bloc) => bloc.add(const Scored(points: 2)),
         expect: () => [
-          isA<GameState>()..having((state) => state.roundScore, 'roundScore', 1)
+          isA<GameState>()..having((state) => state.roundScore, 'roundScore', 1),
         ],
       );
     });

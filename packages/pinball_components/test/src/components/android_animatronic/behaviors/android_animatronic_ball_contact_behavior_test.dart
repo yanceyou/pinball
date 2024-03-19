@@ -48,7 +48,7 @@ void main() {
               AndroidSpaceshipState>.value(
             value: bloc,
             children: [
-              AndroidSpaceship.test(children: [animatronic])
+              AndroidSpaceship.test(children: [animatronic]),
             ],
           );
           await animatronic.add(behavior);
