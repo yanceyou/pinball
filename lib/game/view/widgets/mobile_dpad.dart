@@ -5,7 +5,7 @@ import 'package:pinball_ui/pinball_ui.dart';
 /// Widget rendering 4 directional input arrows.
 /// {@endtemplate}
 class MobileDpad extends StatelessWidget {
-  /// {@template mobile_dpad}
+  /// {@macro mobile_dpad}
   const MobileDpad({
     Key? key,
     required this.onTapUp,

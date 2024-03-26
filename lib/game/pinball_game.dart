@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/input.dart';
 import 'package:flame_bloc/flame_bloc.dart';
+import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:leaderboard_repository/leaderboard_repository.dart';
@@ -16,8 +18,8 @@ import 'package:pinball_flame/pinball_flame.dart';
 import 'package:platform_helper/platform_helper.dart';
 import 'package:share_repository/share_repository.dart';
 
-class PinballGame extends PinballForge2DGame
-    with HasKeyboardHandlerComponents, MultiTouchTapDetector, HasTappables {
+class PinballGame extends Forge2DGame
+    with HasKeyboardHandlerComponents, MultiTouchTapDetector {
   PinballGame({
     required CharacterThemeCubit characterThemeBloc,
     required this.leaderboardRepository,
@@ -159,7 +161,8 @@ class PinballGame extends PinballForge2DGame
       final rocket = descendants().whereType<RocketSpriteComponent>().first;
       final bounds = rocket.topLeftPosition & rocket.size;
 
-      final tappedRocket = bounds.contains(info.eventPosition.game.toOffset());
+      final tappedRocket =
+          bounds.contains(info.eventPosition.global.toOffset());
       if (tappedRocket) {
         descendants()
             .whereType<FlameBlocProvider<PlungerCubit, PlungerState>>()
@@ -212,7 +215,7 @@ class PinballGame extends PinballForge2DGame
   }
 }
 
-class DebugPinballGame extends PinballGame with FPSCounter, PanDetector {
+class DebugPinballGame extends PinballGame with PanDetector {
   DebugPinballGame({
     required CharacterThemeCubit characterThemeBloc,
     required LeaderboardRepository leaderboardRepository,
@@ -237,7 +240,7 @@ class DebugPinballGame extends PinballGame with FPSCounter, PanDetector {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    await addAll([PreviewLine(), _DebugInformation()]);
+    await addAll([PreviewLine(), _DebugInformation(), FpsTextComponent()]);
   }
 
   @override
@@ -246,16 +249,16 @@ class DebugPinballGame extends PinballGame with FPSCounter, PanDetector {
 
     if (info.raw.kind == PointerDeviceKind.mouse) {
       final canvas = descendants().whereType<ZCanvasComponent>().single;
-      final ball = Ball()..initialPosition = info.eventPosition.game;
+      final ball = Ball()..initialPosition = info.eventPosition.global;
       canvas.add(ball);
     }
   }
 
   @override
-  void onPanStart(DragStartInfo info) => lineStart = info.eventPosition.game;
+  void onPanStart(DragStartInfo info) => lineStart = info.eventPosition.global;
 
   @override
-  void onPanUpdate(DragUpdateInfo info) => lineEnd = info.eventPosition.game;
+  void onPanUpdate(DragUpdateInfo info) => lineEnd = info.eventPosition.global;
 
   @override
   void onPanEnd(DragEndInfo info) {
@@ -298,7 +301,6 @@ class PreviewLine extends PositionComponent with HasGameRef<DebugPinballGame> {
 }
 
 class _DebugInformation extends Component with HasGameRef<DebugPinballGame> {
-  @override
   PositionType get positionType => PositionType.widget;
 
   final _debugTextPaint = TextPaint(
@@ -313,14 +315,13 @@ class _DebugInformation extends Component with HasGameRef<DebugPinballGame> {
   @override
   void render(Canvas canvas) {
     final debugText = [
-      'FPS: ${gameRef.fps().toStringAsFixed(1)}',
       'BALLS: ${gameRef.descendants().whereType<Ball>().length}',
     ].join(' | ');
 
-    final height = _debugTextPaint.measureTextHeight(debugText);
-    final position = Vector2(0, gameRef.camera.canvasSize.y - height);
+    final height = _debugTextPaint.getLineMetrics(debugText).height;
+    final position = Vector2(0, gameRef.camera.viewport.size.y - height);
     canvas.drawRect(
-      position & Vector2(gameRef.camera.canvasSize.x, height),
+      position & Vector2(gameRef.camera.viewport.size.x, height),
       _debugBackgroundPaint,
     );
     _debugTextPaint.render(canvas, debugText, position);

@@ -8,7 +8,7 @@ import 'package:pinball_ui/pinball_ui.dart';
 
 /// {@template character_selection_dialog}
 /// Dialog used to select the playing character of the game.
-/// {@endtemplate character_selection_dialog}
+/// {@endtemplate}
 class CharacterSelectionDialog extends StatelessWidget {
   /// {@macro character_selection_dialog}
   const CharacterSelectionDialog({Key? key}) : super(key: key);
