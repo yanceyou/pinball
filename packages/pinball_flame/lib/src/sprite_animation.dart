@@ -45,17 +45,13 @@ class SpriteAnimationController extends AnimationController {
   /// {@macro sprite_animation_controller}
   SpriteAnimationController({
     required TickerProvider vsync,
-    required this.animation,
+    required this.ticker,
   }) : super(vsync: vsync) {
-    ticker = animation.createTicker();
     duration = Duration(seconds: ticker.totalDuration().ceil());
   }
 
-  /// [SpriteAnimation] associated to this controller
-  final SpriteAnimation animation;
-
-  /// [SpriteAnimationTicker] ticker
-  late final SpriteAnimationTicker ticker;
+  /// [SpriteAnimationTicker] ticker associated to this controller
+  final SpriteAnimationTicker ticker;
 
   double? _lastUpdated;
 

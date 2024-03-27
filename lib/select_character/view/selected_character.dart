@@ -95,8 +95,9 @@ class _SelectedCharacterState extends State<SelectedCharacter>
       to: spriteSheet.rows * spriteSheet.columns,
     );
     if (_controller != null) _controller?.dispose();
-    _controller = SpriteAnimationController(vsync: this, animation: animation)
-      ..forward()
-      ..repeat();
+    _controller =
+        SpriteAnimationController(vsync: this, ticker: animation.createTicker())
+          ..forward()
+          ..repeat();
   }
 }
