@@ -1,3 +1,4 @@
+import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:pinball/game/game.dart';
@@ -74,10 +75,10 @@ class CameraFocusingBehavior extends Component
   void _snap(GameStatus focusKey) {
     final focusData = _foci[_activeFocus = focusKey]!;
 
-    gameRef.camera
-      ..speed = 100
-      ..followVector2(focusData.position)
+    gameRef.camera.viewfinder = Viewfinder()
+      ..position = focusData.position
       ..zoom = focusData.zoom;
+    // ..speed = 100
   }
 
   void _zoomTo(GameStatus focusKey) {
