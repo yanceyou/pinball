@@ -17,7 +17,7 @@ final _bodyTextPaint = TextPaint(
 /// Display used to show the loading animation.
 /// {@endtemplate}
 class LoadingDisplay extends TextComponent {
-  /// {@template loading_display}
+  /// {@macro loading_display}
   LoadingDisplay();
 
   late final String _label;

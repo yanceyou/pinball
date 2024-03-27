@@ -16,7 +16,7 @@ export 'cubit/kicker_cubit.dart';
 /// opposite side.
 ///
 /// [Kicker]s are usually positioned above each [Flipper].
-/// {@endtemplate kicker}
+/// {@endtemplate}
 class Kicker extends BodyComponent with InitialPosition {
   /// {@macro kicker}
   Kicker({

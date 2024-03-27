@@ -79,7 +79,8 @@ class _TitleAndSubtitle extends StatelessWidget {
           subtitle,
           overflow: TextOverflow.ellipsis,
           textAlign: TextAlign.center,
-          style: textTheme.displaySmall!.copyWith(fontWeight: FontWeight.normal),
+          style:
+              textTheme.displaySmall!.copyWith(fontWeight: FontWeight.normal),
         ),
       ],
     );

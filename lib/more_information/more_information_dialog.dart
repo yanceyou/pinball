@@ -175,7 +175,8 @@ class _MadeWithFlutterAndFirebase extends StatelessWidget {
       textAlign: TextAlign.center,
       text: TextSpan(
         text: l10n.linkBoxMadeWithText,
-        style: theme.textTheme.headlineSmall!.copyWith(color: PinballColors.white),
+        style:
+            theme.textTheme.headlineSmall!.copyWith(color: PinballColors.white),
         children: <TextSpan>[
           TextSpan(
             text: l10n.linkBoxFlutterLinkText,

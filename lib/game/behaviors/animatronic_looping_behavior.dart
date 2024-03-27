@@ -9,8 +9,8 @@ class AnimatronicLoopingBehavior extends TimerComponent
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    parent.animation?.onComplete = () {
-      parent.animation?.reset();
+    parent.animationTicker?.onComplete = () {
+      parent.animationTicker?.reset();
       parent.playing = false;
       timer
         ..reset()
