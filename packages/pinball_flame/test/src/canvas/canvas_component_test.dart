@@ -5,16 +5,21 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:flame/components.dart';
+import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flame_test/flame_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pinball_flame/src/canvas/canvas_component.dart';
 
 class _TestSpriteComponent extends SpriteComponent {}
 
+class _TestGame extends Forge2DGame {}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('CanvasComponent', () {
+    final flameTester = FlameTester(_TestGame.new);
+
     test('can be instantiated', () {
       expect(
         CanvasComponent(),
@@ -22,14 +27,15 @@ void main() {
       );
     });
 
-    testWithFlameGame('loads correctly', (game) async {
+    testWithGame<_TestGame>('loads correctly', _TestGame.new, (game) async {
       final component = CanvasComponent();
       await game.ensureAdd(component);
       expect(game.contains(component), isTrue);
     });
 
-    testWithFlameGame(
+    testWithGame<_TestGame>(
       'adds children',
+      _TestGame.new,
       (game) async {
         final component = Component();
         final canvas = CanvasComponent(
