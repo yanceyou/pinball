@@ -27,7 +27,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('ZCanvasComponent', () {
-    const goldensFilePath = '../goldens/rendering/';
+    const goldensFilePath = './goldens/rendering/';
 
     test('can be instantiated', () {
       expect(
