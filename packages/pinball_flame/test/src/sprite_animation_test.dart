@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:flame/sprite.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pinball_flame/pinball_flame.dart';
@@ -6,28 +7,27 @@ import 'package:pinball_flame/pinball_flame.dart';
 class _MockSpriteAnimationController extends Mock
     implements SpriteAnimationController {}
 
-class _MockSpriteAnimation extends Mock implements SpriteAnimation {}
+class _MockSpriteAnimationTicker extends Mock
+    implements SpriteAnimationTicker {}
 
 class _MockSprite extends Mock implements Sprite {}
 
 void main() {
   group('PinballSpriteAnimationWidget', () {
     late SpriteAnimationController controller;
-    late SpriteAnimation animation;
+    late SpriteAnimationTicker ticker;
     late Sprite sprite;
 
     setUp(() {
       controller = _MockSpriteAnimationController();
-      animation = _MockSpriteAnimation();
+      ticker = _MockSpriteAnimationTicker();
       sprite = _MockSprite();
 
-      when(() => controller.animation).thenAnswer((_) => animation);
-
-      when(() => animation.createTicker().totalDuration()).thenAnswer((_) => 1);
-      when(() => animation.createTicker().getSprite())
-          .thenAnswer((_) => sprite);
-      when(() => sprite.srcSize).thenAnswer((_) => Vector2(1, 1));
-      when(() => sprite.srcSize).thenAnswer((_) => Vector2(1, 1));
+      when(() => controller.ticker).thenReturn(ticker);
+      when(() => ticker.totalDuration()).thenReturn(1);
+      when(() => ticker.getSprite()).thenReturn(sprite);
+      when(() => sprite.srcSize).thenReturn(Vector2(1, 1));
+      when(() => sprite.srcSize).thenReturn(Vector2(1, 1));
     });
 
     testWidgets('renders correctly', (tester) async {
@@ -46,10 +46,10 @@ void main() {
     test('SpriteAnimationController is updating animations', () {
       SpriteAnimationController(
         vsync: const TestVSync(),
-        ticker: animation,
+        ticker: ticker,
       ).notifyListeners();
 
-      verify(() => animation.createTicker().update(any())).called(1);
+      verify(() => ticker.update(any())).called(1);
     });
 
     testWidgets('SpritePainter shouldRepaint returns true when Sprite changed',

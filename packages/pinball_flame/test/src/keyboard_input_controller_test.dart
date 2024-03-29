@@ -1,13 +1,13 @@
 // ignore_for_file: cascade_invocations, one_member_abstracts
 
-import 'package:flame/game.dart';
+import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flame_test/flame_test.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pinball_flame/pinball_flame.dart';
 
-class _TestGame extends FlameGame {
+class _TestGame extends Forge2DGame {
   bool pressed = false;
 
   @override
@@ -101,11 +101,15 @@ void main() {
   });
   group('VirtualKeyEvents', () {
     group('onVirtualKeyUp', () {
-      testWithFlameGame('triggers the event', (game) async {
-        await game.ready();
-        game.triggerVirtualKeyUp(LogicalKeyboardKey.enter);
-        expect(game.pressed, isTrue);
-      });
+      testWithGame<_TestGame>(
+        'triggers the event',
+        _TestGame.new,
+        (game) async {
+          await game.ready();
+          game.triggerVirtualKeyUp(LogicalKeyboardKey.enter);
+          expect(game.pressed, isTrue);
+        },
+      );
     });
   });
 }
