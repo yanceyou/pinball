@@ -1,5 +1,3 @@
-// ignore_for_file: cascade_invocations
-
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flame_test/flame_test.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -33,42 +31,55 @@ void main() {
       );
     });
 
-    testWithFlameGame('can be loaded', (game) async {
-      final behavior = ZIndexContactBehavior(zIndex: 0);
-      final parent = _TestBodyComponent();
-      await game.ensureAdd(parent);
-      await parent.ensureAdd(behavior);
-      expect(parent.children, contains(behavior));
-    });
+    testWithGame<Forge2DGame>(
+      'can be loaded',
+      Forge2DGame.new,
+      (game) async {
+        final behavior = ZIndexContactBehavior(zIndex: 0);
+        final parent = _TestBodyComponent();
+        await game.ensureAdd(parent);
+        await parent.ensureAdd(behavior);
+        expect(parent.children, contains(behavior));
+      },
+    );
 
-    testWithFlameGame('beginContact changes zIndex', (game) async {
-      const oldIndex = 0;
-      const newIndex = 1;
-      final behavior = ZIndexContactBehavior(zIndex: newIndex);
-      final parent = _TestBodyComponent();
-      await game.ensureAdd(parent);
-      await parent.ensureAdd(behavior);
+    testWithGame<Forge2DGame>(
+      'beginContact changes zIndex',
+      Forge2DGame.new,
+      (game) async {
+        const oldIndex = 0;
+        const newIndex = 1;
+        final behavior = ZIndexContactBehavior(zIndex: newIndex);
+        final parent = _TestBodyComponent();
+        await game.ensureAdd(parent);
+        await parent.ensureAdd(behavior);
 
-      final component = _TestZIndexBodyComponent(zIndex: oldIndex);
+        final component = _TestZIndexBodyComponent(zIndex: oldIndex);
 
-      behavior.beginContact(component, _MockContact());
+        behavior.beginContact(component, _MockContact());
 
-      expect(component.zIndex, newIndex);
-    });
+        expect(component.zIndex, newIndex);
+      },
+    );
 
-    testWithFlameGame('endContact changes zIndex', (game) async {
-      const oldIndex = 0;
-      const newIndex = 1;
-      final behavior = ZIndexContactBehavior(zIndex: newIndex, onBegin: false);
-      final parent = _TestBodyComponent();
-      await game.ensureAdd(parent);
-      await parent.ensureAdd(behavior);
+    testWithGame<Forge2DGame>(
+      'endContact changes zIndex',
+      Forge2DGame.new,
+      (game) async {
+        const oldIndex = 0;
+        const newIndex = 1;
+        final behavior =
+            ZIndexContactBehavior(zIndex: newIndex, onBegin: false);
+        final parent = _TestBodyComponent();
+        await game.ensureAdd(parent);
+        await parent.ensureAdd(behavior);
 
-      final component = _TestZIndexBodyComponent(zIndex: oldIndex);
+        final component = _TestZIndexBodyComponent(zIndex: oldIndex);
 
-      behavior.endContact(component, _MockContact());
+        behavior.endContact(component, _MockContact());
 
-      expect(component.zIndex, newIndex);
-    });
+        expect(component.zIndex, newIndex);
+      },
+    );
   });
 }

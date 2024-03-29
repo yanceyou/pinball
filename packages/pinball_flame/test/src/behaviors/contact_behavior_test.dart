@@ -1,5 +1,3 @@
-// ignore_for_file: cascade_invocations
-
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flame_test/flame_test.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -67,9 +65,10 @@ void main() {
       fixtureDef = FixtureDef(CircleShape());
     });
 
-    testWithFlameGame(
+    testWithGame<Forge2DGame>(
       "should add a new ContactCallbacks to the parent's body userData "
       'when not applied to fixtures',
+      Forge2DGame.new,
       (game) async {
         final parent = _TestBodyComponent();
         final contactBehavior = ContactBehavior();
@@ -80,8 +79,9 @@ void main() {
       },
     );
 
-    testWithFlameGame(
+    testWithGame<Forge2DGame>(
       'should add a new ContactCallbacks to the targeted fixture ',
+      Forge2DGame.new,
       (game) async {
         final parent = _TestBodyComponent();
 
@@ -102,8 +102,9 @@ void main() {
       },
     );
 
-    testWithFlameGame(
+    testWithGame<Forge2DGame>(
       'should add a new ContactCallbacks to the targeted fixtures ',
+      Forge2DGame.new,
       (game) async {
         final parent = _TestBodyComponent();
 
@@ -126,9 +127,10 @@ void main() {
       },
     );
 
-    testWithFlameGame(
+    testWithGame<Forge2DGame>(
       "should respect the previous ContactCallbacks in the parent's userData "
       'when not applied to fixtures',
+      Forge2DGame.new,
       (game) async {
         final parent = _TestBodyComponent();
         await game.ensureAdd(parent);
@@ -162,8 +164,9 @@ void main() {
       },
     );
 
-    testWithFlameGame(
+    testWithGame<Forge2DGame>(
       'can group multiple ContactBehaviors and keep listening',
+      Forge2DGame.new,
       (game) async {
         final parent = _TestBodyComponent();
         await game.ensureAdd(parent);
@@ -201,9 +204,10 @@ void main() {
       },
     );
 
-    testWithFlameGame(
+    testWithGame<Forge2DGame>(
       'can group multiple ContactBehaviors and keep listening '
       'when applied to a fixture',
+      Forge2DGame.new,
       (game) async {
         final parent = _TestBodyComponent();
         await game.ensureAdd(parent);
