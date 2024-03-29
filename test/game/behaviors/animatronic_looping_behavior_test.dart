@@ -23,8 +23,6 @@ class _MockSpriteAnimation extends Mock implements SpriteAnimation {}
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  final flameTester = FlameTester(_TestGame.new);
-
   group('AnimatronicLoopingBehavior', () {
     test('can be instantiated', () {
       expect(
@@ -33,8 +31,9 @@ void main() {
       );
     });
 
-    flameTester.test(
+    testWithGame<_TestGame>(
       'can be added',
+      _TestGame.new,
       (game) async {
         final behavior = AnimatronicLoopingBehavior(animationCoolDown: 1);
         final animation = _MockSpriteAnimation();
@@ -49,8 +48,9 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithGame<_TestGame>(
       'onTick starts playing the animation',
+      _TestGame.new,
       (game) async {
         final behavior = AnimatronicLoopingBehavior(animationCoolDown: 1);
         final spriteAnimationComponent = _TestSpriteAnimationComponent();
@@ -64,8 +64,9 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithGame<_TestGame>(
       'animation onComplete resets and stops playing the animation',
+      _TestGame.new,
       (game) async {
         final behavior = AnimatronicLoopingBehavior(animationCoolDown: 1);
         final spriteAnimationComponent = DashAnimatronic();
@@ -83,8 +84,9 @@ void main() {
       },
     );
 
-    flameTester.test(
+    testWithGame<_TestGame>(
       'animation onComplete resets and starts the timer',
+      _TestGame.new,
       (game) async {
         final behavior = AnimatronicLoopingBehavior(animationCoolDown: 1);
         final spriteAnimationComponent = DashAnimatronic();

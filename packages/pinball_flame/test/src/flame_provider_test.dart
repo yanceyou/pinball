@@ -2,7 +2,6 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:flame/components.dart';
-import 'package:flame/game.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flame_test/flame_test.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -12,7 +11,6 @@ class _FakeCubit extends Fake implements Cubit<Object> {}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  final flameTester = FlameTester(FlameGame.new);
 
   group(
     'FlameProvider',

@@ -24,7 +24,8 @@ void main() {
       when(() => controller.animation).thenAnswer((_) => animation);
 
       when(() => animation.createTicker().totalDuration()).thenAnswer((_) => 1);
-      when(() => animation.createTicker().getSprite()).thenAnswer((_) => sprite);
+      when(() => animation.createTicker().getSprite())
+          .thenAnswer((_) => sprite);
       when(() => sprite.srcSize).thenAnswer((_) => Vector2(1, 1));
       when(() => sprite.srcSize).thenAnswer((_) => Vector2(1, 1));
     });
@@ -45,7 +46,7 @@ void main() {
     test('SpriteAnimationController is updating animations', () {
       SpriteAnimationController(
         vsync: const TestVSync(),
-        animation: animation,
+        ticker: animation,
       ).notifyListeners();
 
       verify(() => animation.createTicker().update(any())).called(1);

@@ -1,4 +1,3 @@
-// ignore_for_file: cascade_invocations
 import 'dart:math' as math;
 
 import 'package:flame_forge2d/flame_forge2d.dart';
@@ -30,18 +29,19 @@ void main() {
     }) {
       expect(fixtures.length, greaterThan(0));
       for (final fixture in fixtures) {
-        expect(
-          fixture.filterData.categoryBits,
-          equals(layer.maskBits),
-        );
+        expect(fixture.filterData.categoryBits, equals(layer.maskBits));
         expect(fixture.filterData.maskBits, equals(layer.maskBits));
       }
     }
 
-    testWithFlameGame('TestBodyComponent has fixtures', (game) async {
-      final component = _TestBodyComponent();
-      await game.ensureAdd(component);
-    });
+    testWithGame<Forge2DGame>(
+      'TestBodyComponent has fixtures',
+      Forge2DGame.new,
+      (game) async {
+        final component = _TestBodyComponent();
+        await game.ensureAdd(component);
+      },
+    );
 
     test('correctly sets and gets', () {
       final component = _TestLayeredBodyComponent()
@@ -49,8 +49,9 @@ void main() {
       expect(component.layer, Layer.spaceshipEntranceRamp);
     });
 
-    testWithFlameGame(
+    testWithGame<Forge2DGame>(
       'layers correctly before being loaded',
+      Forge2DGame.new,
       (game) async {
         const expectedLayer = Layer.spaceshipEntranceRamp;
         final component = _TestLayeredBodyComponent()..layer = expectedLayer;
@@ -63,9 +64,10 @@ void main() {
       },
     );
 
-    testWithFlameGame(
+    testWithGame<Forge2DGame>(
       'layers correctly before being loaded '
       'when multiple different sets',
+      Forge2DGame.new,
       (game) async {
         const expectedLayer = Layer.launcher;
         final component = _TestLayeredBodyComponent()
@@ -83,8 +85,9 @@ void main() {
       },
     );
 
-    testWithFlameGame(
+    testWithGame<Forge2DGame>(
       'layers correctly after being loaded',
+      Forge2DGame.new,
       (game) async {
         const expectedLayer = Layer.spaceshipEntranceRamp;
         final component = _TestLayeredBodyComponent();
@@ -97,9 +100,10 @@ void main() {
       },
     );
 
-    testWithFlameGame(
+    testWithGame<Forge2DGame>(
       'layers correctly after being loaded '
       'when multiple different sets',
+      Forge2DGame.new,
       (game) async {
         const expectedLayer = Layer.launcher;
         final component = _TestLayeredBodyComponent();
@@ -116,9 +120,10 @@ void main() {
       },
     );
 
-    testWithFlameGame(
+    testWithGame<Forge2DGame>(
       'defaults to Layer.all '
       'when no layer is given',
+      Forge2DGame.new,
       (game) async {
         final component = _TestLayeredBodyComponent();
         await game.ensureAdd(component);
@@ -126,8 +131,9 @@ void main() {
       },
     );
 
-    testWithFlameGame(
+    testWithGame<Forge2DGame>(
       'nested Layered children will keep their layer',
+      Forge2DGame.new,
       (game) async {
         const parentLayer = Layer.spaceshipEntranceRamp;
         const childLayer = Layer.board;
@@ -148,8 +154,9 @@ void main() {
       },
     );
 
-    testWithFlameGame(
+    testWithGame<Forge2DGame>(
       'nested children will keep their layer',
+      Forge2DGame.new,
       (game) async {
         const parentLayer = Layer.spaceshipEntranceRamp;
 
