@@ -29,7 +29,7 @@ class AndroidSpaceshipGame extends BallGame {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    camera.followVector2(Vector2.zero());
+    camera.viewfinder.position = Vector2.zero();
     await add(
       FlameBlocProvider<AndroidSpaceshipCubit, AndroidSpaceshipState>(
         create: AndroidSpaceshipCubit.new,

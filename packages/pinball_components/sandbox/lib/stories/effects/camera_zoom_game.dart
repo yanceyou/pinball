@@ -6,7 +6,7 @@ import 'package:sandbox/common/common.dart';
 class CameraZoomGame extends AssetsGame with TapDetector {
   static const description = '''
     Shows how CameraZoom can be used.
-      
+
     - Tap to zoom in/out.
   ''';
 
@@ -24,7 +24,7 @@ class CameraZoomGame extends AssetsGame with TapDetector {
       ),
     );
 
-    camera.followVector2(Vector2.zero());
+    camera.viewfinder.position = Vector2.zero();
   }
 
   @override

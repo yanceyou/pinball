@@ -23,8 +23,8 @@ class BoundariesGame extends BallGame {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    camera
-      ..followVector2(Vector2.zero())
+    camera.viewfinder
+      ..position = Vector2.zero()
       ..zoom = 6;
     await add(Boundaries());
     await ready();

@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flame/effects.dart';
+import 'package:flame/events.dart';
 import 'package:flame/input.dart';
 import 'package:pinball_components/pinball_components.dart';
 import 'package:sandbox/common/common.dart';
@@ -27,7 +28,7 @@ class ScoreGame extends AssetsGame with TapDetector {
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-    camera.followVector2(Vector2.zero());
+    camera.viewfinder.position = Vector2.zero();
   }
 
   @override
@@ -38,7 +39,7 @@ class ScoreGame extends AssetsGame with TapDetector {
     add(
       ScoreComponent(
         points: score,
-        position: info.eventPosition.game..multiply(Vector2(1, -1)),
+        position: info.eventPosition.global..multiply(Vector2(1, -1)),
         effectController: EffectController(duration: 1),
       ),
     );

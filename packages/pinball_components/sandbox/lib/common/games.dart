@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/input.dart';
 import 'package:flame_forge2d/flame_forge2d.dart';
 import 'package:flutter/material.dart';
@@ -38,18 +39,19 @@ abstract class LineGame extends AssetsGame with PanDetector {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    camera.followVector2(Vector2.zero());
-    unawaited(add(_PreviewLine()));
+    camera.viewfinder.position = Vector2.zero();
+    // unawaited(add(_PreviewLine()));
+    add(_PreviewLine());
   }
 
   @override
   void onPanStart(DragStartInfo info) {
-    _lineEnd = info.eventPosition.game;
+    _lineEnd = info.eventPosition.global; // [TODO]: right?
   }
 
   @override
   void onPanUpdate(DragUpdateInfo info) {
-    _lineEnd = info.eventPosition.game;
+    _lineEnd = info.eventPosition.global; // [TODO]: right?
   }
 
   @override

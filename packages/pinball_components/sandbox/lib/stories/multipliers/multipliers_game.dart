@@ -24,7 +24,7 @@ class MultipliersGame extends BallGame with KeyboardEvents {
 
   static const description = '''
     Shows how the Multipliers are rendered.
-      
+
     - Tap anywhere on the screen to spawn a ball into the game.
     - Press digits 2 to 6 for toggle state multipliers 2 to 6.
 ''';
@@ -56,7 +56,7 @@ class MultipliersGame extends BallGame with KeyboardEvents {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    camera.followVector2(Vector2.zero());
+    camera.viewfinder.position = Vector2.zero();
 
     await addAll(multipliers);
     await traceAllBodies();
@@ -64,10 +64,10 @@ class MultipliersGame extends BallGame with KeyboardEvents {
 
   @override
   KeyEventResult onKeyEvent(
-    RawKeyEvent event,
+    KeyEvent event,
     Set<LogicalKeyboardKey> keysPressed,
   ) {
-    if (event is RawKeyDownEvent) {
+    if (event is KeyDownEvent) {
       var currentMultiplier = 1;
 
       if (event.logicalKey == LogicalKeyboardKey.digit2) {

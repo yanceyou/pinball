@@ -27,7 +27,7 @@ class SpaceshipRailGame extends BallGame {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    camera.followVector2(Vector2(-30, -10));
+    camera.viewfinder.position = Vector2(-30, -10);
     await add(SpaceshipRail());
     await ready();
     await traceAllBodies();

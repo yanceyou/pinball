@@ -25,7 +25,7 @@ class DinoWallsGame extends BallGame {
     ]);
 
     await add(DinoWalls());
-    camera.followVector2(Vector2.zero());
+    camera.viewfinder.position = Vector2.zero();
     await traceAllBodies();
   }
 }

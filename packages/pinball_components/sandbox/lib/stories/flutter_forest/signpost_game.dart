@@ -30,7 +30,7 @@ class SignpostGame extends BallGame {
     await super.onLoad();
     _bloc = SignpostCubit();
 
-    camera.followVector2(Vector2.zero());
+    camera.viewfinder.position = Vector2.zero();
     await add(
       FlameMultiBlocProvider(
         providers: [

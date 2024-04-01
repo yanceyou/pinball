@@ -22,7 +22,7 @@ class SparkyComputerGame extends BallGame {
       Assets.images.sparky.computer.glow.keyName,
     ]);
 
-    camera.followVector2(Vector2(-10, -40));
+    camera.viewfinder.position = (Vector2(-10, -40));
     await add(SparkyComputer());
     await ready();
     await traceAllBodies();

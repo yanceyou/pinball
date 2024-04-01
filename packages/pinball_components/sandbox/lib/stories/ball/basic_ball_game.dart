@@ -1,4 +1,4 @@
-import 'package:flame/input.dart';
+import 'package:flame/events.dart';
 import 'package:pinball_components/pinball_components.dart';
 import 'package:pinball_flame/pinball_flame.dart';
 import 'package:pinball_theme/pinball_theme.dart' as theme;
@@ -22,7 +22,7 @@ class BallGame extends AssetsGame with TapDetector, Traceable {
 
   static const description = '''
     Shows how a Ball works.
-      
+
     - Tap anywhere on the screen to spawn a ball into the game.
 ''';
 
@@ -43,7 +43,7 @@ class BallGame extends AssetsGame with TapDetector, Traceable {
       Ball(
         assetPath: characterBallPaths[character],
       )
-        ..initialPosition = info.eventPosition.game
+        ..initialPosition = info.eventPosition.global
         ..layer = ballLayer
         ..priority = ballPriority,
     );

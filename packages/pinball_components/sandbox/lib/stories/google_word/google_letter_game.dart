@@ -13,7 +13,7 @@ class GoogleLetterGame extends BallGame {
 
   static const description = '''
     Shows how a GoogleLetter is rendered.
-      
+
     - Tap anywhere on the screen to spawn a ball into the game.
 ''';
 
@@ -21,7 +21,7 @@ class GoogleLetterGame extends BallGame {
   Future<void> onLoad() async {
     await super.onLoad();
 
-    camera.followVector2(Vector2.zero());
+    camera.viewfinder.position = Vector2.zero();
     await add(GoogleLetter(0));
 
     await traceAllBodies();
