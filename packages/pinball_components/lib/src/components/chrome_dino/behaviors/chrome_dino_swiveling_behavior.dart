@@ -50,7 +50,7 @@ class ChromeDinoSwivelingBehavior extends TimerComponent
   @override
   void onTick() {
     super.onTick();
-    _joint.setMotorSpeed(-_joint.motorSpeed);
+    _joint.motorSpeed = -_joint.motorSpeed;
   }
 }
 
@@ -62,8 +62,8 @@ class _ChromeDinoAnchor extends JointAnchor
     parent.parent.children
         .whereType<SpriteAnimationComponent>()
         .forEach((sprite) {
-      sprite.animation!.currentIndex = 45;
-      sprite.changeParent(this);
+      sprite.animationTicker!.currentIndex = 45;
+      sprite.parent = this;
     });
   }
 }
